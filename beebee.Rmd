@@ -1,0 +1,101 @@
+---
+title: "BeeBee's Affirmations"
+author: "Emmy Highland"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r libs, include=FALSE}
+library(ggplot2)
+library(plotly)
+```
+
+```{r makedata, include=FALSE}
+my.data <- data.frame(
+  Date=c(as.Date('03-September-2013',format='%d-%B-%Y'),seq.Date(as.Date('31-December-2014',format='%d-%B-%Y'),as.Date('31-December-2016',format='%d-%B-%Y'),'year'), as.Date('05-July-2017',format='%d-%B-%Y'), as.Date('31-December-2018',format='%d-%B-%Y'),as.Date('31-December-2019',format='%d-%B-%Y'),as.Date('01-March-2020',format='%d-%B-%Y')), 
+  Popcorn=c(92,96,100,110,110,20,30,60)
+)
+
+out.and.about <- data.frame(
+  Matching=c(rep('Yes',70),rep('No',30)),
+  #Matching=c('Yes','No'),
+  Percent=c('70%','30%')
+)
+
+keepin.it.casual <- data.frame(
+  Matching=c(rep('Yes',30),rep('No',70)),
+  #Matching=c('Yes','No'),
+  amount=c(30,70)
+)
+
+love <- data.frame(
+  Year=c(2013,2014,2015,2016,2017,2018,2019,2020),
+  Love=c(10,20,40,80,160,320,640,1280)
+)
+#  advice=c(rep('Amazing',100),rep('Outstanding',100),rep('Inspiring',100)),
+#  x = c(1,2,3),
+#  y = c(100,100,100)
+#)
+```
+
+# About This Report
+
+I felt it was imperative to provide an affirmation for my soulmate, the one and only BeeBee. Words can scarsely hope to convey the depth of my love, appreciation, and admiration, so I also made graphs. 
+
+# Personal Significance
+
+BeeBee holds an incredibly special place in my heart. The bond we share is truly sacred to me. I cannot fathom a life without them. BeeBee has been a fantastic friend, a compassionate confidant, and a supportive supervisor. We share so many treasured memories over our years of friendship. From our days in college, to our days living a short bus ride apart, to our days of video calls, to our sweet, sweet reunion, BeeBee has been a blessing. Recent adventures include a trip to Boston and, of course, Bois Night. There is no one I'd rather have a Bois Night with. Next time, let's challenge ourselves to three bottles of wine and no corkscrew.
+
+My relationship with BeeBee is one of the most significant and important of my life. They have helped me to grow and to love myself. I am forever grateful to this beautiful, rule-breaking moth and powerful musk ox. I may never understand how I managed to acquire such a thoughtful (and hot) friend, but I'm sure glad we met. 
+
+In short, I am honored to be authoring this report and honored to be their friend. Someday I will be able to freely meander such that I may gaze upon their beauty and bask in the glow of their presence. For now...it's a pandemic. In addition to future quality time, I have crafted some quality graphs. Some of which involve time! 
+
+# Popcorn Over Time
+
+I love all the inside jokes and traditions we share. One particular tradition I treasure is our ceremonial popcorn feast. Let's take a look at how our popcorn consumption has changed over our years of friendship and tomfoolery.
+
+According to the [Northern Ag Network](https://www.northernag.net/how-much-popcorn-does-the-average-american-eat-each-year/), "The average American eats 68 quarts of popcorn each year." However, [Census.gov](https://www.census.gov/newsroom/stories/2018/popcorn.html) siting a different source, says that Americans eat 42 quarts per capita. I referenced this source, [Popcorn.org](9https://www.popcorn.org/Facts-Fun/Industry-Facts), and found that the number is actually 45 quarts. It remains unclear if this is an updated number or if this is yet another government lie.
+
+Anyways, I think it is fair to presume that both Emmy and BeeBee, as lovers of popcorn, consumed slightly above average. Let us assign them each a value of 46 quarts per year to begin, thus 92 quarts total. Let us assume that the amount of popcorn increased slightly with each year of friendship, except during Emmy's time in Denver. Of course, now that Emmy and BeeBee are in the same city again, the popcorn consumption has risen as much as possible. Had a pandemic not swept in, the total for 2020 would doubtless be higher at the time of this report.
+
+```{r popcorn, echo=FALSE}
+p <- ggplot(my.data, aes(x=Date,y=Popcorn)) + geom_line(color='#4B0082') + ylab('Total Popcorn Consumed to Date (quarts)')
+ggplotly(p)
+```
+
+# Likelihood of Matching Outfits
+
+Another of my favorite activities is a newer one: matching our outfits. Do we always? Of course not, we are individuals. Do we often? Well yes, we are individuals who are both stylish!
+
+Let's see what the data reveal about the likelihood we will match ensembles.
+
+First, we can see the percent likelihood of matching outfits when we are going out on the town. Next, the percent likelihood of matching our outfits when we are staying in, just keeping it casual.
+
+```{r outfits, echo=FALSE}
+outfits <- ggplot(out.and.about,aes(Matching)) + geom_bar(fill=c('#9370DB','#4B0082')) + xlab ('Matching (going out)') + ylab('% likelihood')
+outfits.2 <- ggplot(keepin.it.casual,aes(Matching)) + geom_bar(fill=c('#9370DB','#4B0082')) + xlab ('Matching (staying in)') + ylab('% likelihood')
+
+ggplotly(outfits)
+ggplotly(outfits.2)
+
+```
+
+# Love Over Time
+
+As you can see, BeeBee is a person I really love. Below is a plot of how my love for them has grown over time. What began as a 10/10 friendship has quickly risen to an amazing 1280/10 and continues to rise at a rapid pace. Will it ever stop? NO. IT WILL NOT. I WILL ALWAAAAAAYS LOOOOOOVE YOOOOOOOU.
+
+```{r loveyou, echo=FALSE}
+loveplot <- ggplot(love,aes(x=Year,y=Love)) + geom_area(fill='#9370DB') + geom_point(color='#4B0082') + ylab('Love Level (Out of 10)')
+ggplotly(loveplot)
+```
+
+# Conclusion
+
+Data, like our hips, doesn't lie. The data shows a clear pattern of outstanding friendship and love.
+
+I hope you like this affirmation, BeeBee! It is a custom-crafted, haute couture, artisanal affirmation. 
+
+-----------------------
